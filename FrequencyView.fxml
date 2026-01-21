@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.controller.FrequencyController"
+            prefHeight="750" prefWidth="1100"
+            style="-fx-background-color: linear-gradient(to bottom right, #f5efe9, #e8dfd4);">
+
+    <top>
+        <VBox alignment="CENTER" spacing="10"
+              style="-fx-background-color: linear-gradient(to right, #b99a7a, #d1b79c);
+                     -fx-padding: 25;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 15, 0, 0, 4);">
+            
+            <Label text="📊 Frequency Analysis Dashboard"
+                   style="-fx-font-weight: bold; -fx-text-fill: #2c1f13;">
+                <font><Font size="32"/></font>
+            </Label>
+            
+            <Label text="Analyze word frequencies across different linguistic levels"
+                   style="-fx-text-fill: #4c3f34; -fx-font-size: 14;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" style="-fx-padding: 25;">
+            
+            <!-- Controls Panel -->
+            <HBox spacing="15" alignment="CENTER_LEFT"
+                  style="-fx-background-color: rgba(255,255,255,0.8);
+                         -fx-background-radius: 15;
+                         -fx-padding: 20;
+                         -fx-border-color: rgba(180,150,120,0.3);
+                         -fx-border-radius: 15;
+                         -fx-border-width: 1;">
+                
+                <Label text="Select Analysis Type:"
+                       style="-fx-text-fill: #5c4732; -fx-font-weight: bold; -fx-font-size: 14;"/>
+                
+                <ComboBox fx:id="analysisTypeCombo" prefWidth="200"/>
+                
+                <Label text="Top N Results:" style="-fx-text-fill: #5c4732; -fx-font-size: 14;"/>
+                <Spinner fx:id="topNSpinner" prefWidth="80" 
+                         style="-fx-background-color: white; -fx-border-color: #d1b79c;"/>
+                
+                <Button fx:id="refreshBtn" text="🔄 Refresh"
+                        style="-fx-background-color: #a88b6c; -fx-text-fill: white;
+                               -fx-font-weight: bold; -fx-background-radius: 10;
+                               -fx-padding: 8 20;"/>
+                
+                <Button fx:id="exportBtn" text="📥 Export CSV"
+                        style="-fx-background-color: #7a9c76; -fx-text-fill: white;
+                               -fx-font-weight: bold; -fx-background-radius: 10;
+                               -fx-padding: 8 20;"/>
+                
+                <Button fx:id="chartToggleBtn" text="📈 Toggle Chart"
+                        style="-fx-background-color: #6c8ba8; -fx-text-fill: white;
+                               -fx-font-weight: bold; -fx-background-radius: 10;
+                               -fx-padding: 8 20;"/>
+            </HBox>
+            
+            <!-- Chart Panel -->
+            <BorderPane style="-fx-background-color: white;
+                               -fx-background-radius: 15;
+                               -fx-border-color: #d1b79c;
+                               -fx-border-radius: 15;
+                               -fx-border-width: 2;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                        minHeight="400">
+                
+                <top>
+                    <HBox alignment="CENTER" style="-fx-padding: 15;">
+                        <Label fx:id="chartTitle" text="Frequency Distribution"
+                               style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #3b2e23;"/>
+                    </HBox>
+                </top>
+                
+                <center>
+                    <StackPane fx:id="chartContainer" style="-fx-padding: 10;">
+                        <BarChart fx:id="frequencyChart">
+                            <xAxis><CategoryAxis label="Word" /></xAxis>
+                            <yAxis><NumberAxis label="Frequency" /></yAxis>
+                        </BarChart>
+                    </StackPane>
+                </center>
+            </BorderPane>
+            
+            <!-- Data Table -->
+            <BorderPane style="-fx-background-color: white;
+                               -fx-background-radius: 15;
+                               -fx-border-color: #d1b79c;
+                               -fx-border-radius: 15;
+                               -fx-border-width: 2;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+                        minHeight="200">
+                
+                <top>
+                    <HBox alignment="CENTER_LEFT" style="-fx-padding: 15;">
+                        <Label text="Detailed Frequency Data"
+                               style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #3b2e23;"/>
+                    </HBox>
+                </top>
+                
+                <center>
+                    <TableView fx:id="frequencyTable" style="-fx-background-color: transparent;">
+                        <columns>
+                            <TableColumn fx:id="wordCol" text="Word" prefWidth="300"/>
+                            <TableColumn fx:id="freqCol" text="Frequency" prefWidth="150"/>
+                            <TableColumn fx:id="percentageCol" text="Percentage" prefWidth="150"/>
+                            <TableColumn fx:id="cumulativeCol" text="Cumulative" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </center>
+                
+                <bottom>
+                    <HBox alignment="CENTER_RIGHT" style="-fx-padding: 10 15;">
+                        <Label fx:id="statsLabel" text="Total: 0 items"
+                               style="-fx-text-fill: #5c4732; -fx-font-size: 12;"/>
+                    </HBox>
+                </bottom>
+            </BorderPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #eadfce; -fx-padding: 15;">
+            <Label text="Frequency Analysis • Double-click rows to view details"
+                   style="-fx-text-fill: #6c5746; -fx-font-size: 12;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="pl.controller.BookController"
+            prefHeight="750.0" prefWidth="1200.0"
+            style="-fx-background-color: #f3eadb;"> <!-- Soft parchment background -->
+    
+    <!-- TOP HEADER -->
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #e6d5b8, #d9c3a3);
+                     -fx-effect: dropshadow(gaussian, rgba(80,60,40,0.3), 15, 0, 0, 2);">
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40"/>
+            </padding>
+
+            <Label text="Manage Books" textFill="#4b2e19" style="-fx-font-weight: bold;">
+                <font><Font name="System" size="28"/></font>
+            </Label>
+
+            <Label text="Create, edit, and organize your poetry collections"
+                   textFill="#6b4b31">
+                <font><Font size="14"/></font>
+                <VBox.margin><Insets top="5"/></VBox.margin>
+            </Label>
+        </VBox>
+    </top>
+    
+    <!-- CENTER AREA -->
+    <center>
+        <HBox spacing="0" HBox.hgrow="ALWAYS">
+
+            <!-- LEFT PANEL (Book Operations) -->
+            <VBox spacing="20"
+                  style="-fx-background-color: #fcf8f3;
+                         -fx-border-color: #ccb89d;
+                         -fx-border-width: 0 1 0 0;"
+                  prefWidth="400">
+
+                <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+                
+                <!-- SECTION TITLE -->
+                <Label text="BOOK DETAILS"
+                       style="-fx-font-size: 12px; 
+                              -fx-text-fill: #8a694a; 
+                              -fx-font-weight: bold; 
+                              -fx-letter-spacing: 1.2;"/>
+
+                <!-- FORM INPUTS -->
+                <VBox spacing="15">
+
+                    <Label text="Title"
+                           style="-fx-font-size: 13px; -fx-text-fill: #4b2e19; -fx-font-weight: 600;"/>
+                    <TextField fx:id="titleField" promptText="Enter book title"
+                               style="-fx-background-color: #f7f1e8;
+                                      -fx-border-color: #b89f7a;
+                                      -fx-border-radius: 6; 
+                                      -fx-background-radius: 6;
+                                      -fx-padding: 10;
+                                      -fx-font-size: 13px;"/>
+
+                    <Label text="Compiler"
+                           style="-fx-font-size: 13px; -fx-text-fill: #4b2e19; -fx-font-weight: 600;">
+                        <VBox.margin><Insets top="5"/></VBox.margin>
+                    </Label>
+                    <TextField fx:id="compilerField" promptText="Enter compiler name"
+                               style="-fx-background-color: #f7f1e8;
+                                      -fx-border-color: #b89f7a;
+                                      -fx-border-radius: 6;
+                                      -fx-background-radius: 6;
+                                      -fx-padding: 10;
+                                      -fx-font-size: 13px;"/>
+
+                    <Label text="Era"
+                           style="-fx-font-size: 13px; -fx-text-fill: #4b2e19; -fx-font-weight: 600;">
+                        <VBox.margin><Insets top="5"/></VBox.margin>
+                    </Label>
+                    <DatePicker fx:id="eraDatePicker" prefWidth="340"
+                                style="-fx-background-color: #f7f1e8;
+                                       -fx-border-color: #b89f7a;
+                                       -fx-border-radius: 6;
+                                       -fx-background-radius: 6;"/>
+                </VBox>
+
+                <!-- SEPARATOR -->
+                <Separator style="-fx-background-color: #ccb89d;">
+                    <VBox.margin><Insets top="10" bottom="10"/></VBox.margin>
+                </Separator>
+
+                <!-- ACTIONS TITLE -->
+                <Label text="ACTIONS"
+                       style="-fx-font-size: 12px; -fx-text-fill: #8a694a; -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+
+                <!-- ACTION BUTTONS -->
+                <VBox spacing="12">
+
+                    <Button fx:id="addBookBtn" text="Add Book" onAction="#handleAddBook"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #c8ac88; 
+                                   -fx-text-fill: #3b2a1f;
+                                   -fx-font-size: 13px; -fx-font-weight: 600;
+                                   -fx-background-radius: 6; -fx-padding: 12;"/>
+
+                    <Button fx:id="updateBookBtn" text="Update Selected Book" onAction="#handleUpdateBook"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #a88965; 
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 13px; -fx-font-weight: 600;
+                                   -fx-background-radius: 6; -fx-padding: 12;"/>
+
+                    <Button fx:id="deleteBookBtn" text="Delete Selected Book" onAction="#handleDeleteBook"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #b14545; 
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 13px; -fx-font-weight: 600;
+                                   -fx-background-radius: 6; -fx-padding: 12;"/>
+
+                    <Separator style="-fx-background-color: #ccb89d;">
+                        <VBox.margin><Insets top="5" bottom="5"/></VBox.margin>
+                    </Separator>
+
+                    <Button fx:id="openPoemsBtn" text="Open Poems →" onAction="#handleOpenPoems"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #8b5cf6;
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 13px; -fx-font-weight: 600;
+                                   -fx-background-radius: 6; -fx-padding: 12;"/>
+
+                    <Button fx:id="importBookBtn" text="Import from File" onAction="#handleImportBook"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #d99832; 
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 13px; -fx-font-weight: 600;
+                                   -fx-background-radius: 6; -fx-padding: 12;"/>
+
+                    <Button fx:id="refreshBtn" text="↻ Refresh" onAction="#handleRefresh"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #8a694a; 
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 13px; -fx-font-weight: 600;
+                                   -fx-background-radius: 6; -fx-padding: 12;"/>
+                </VBox>
+            </VBox>
+
+            <!-- RIGHT PANEL (Books Table) -->
+            <VBox spacing="15" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #f3eadb;">
+
+                <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Label text="BOOK LIBRARY"
+                           style="-fx-font-size: 12px; -fx-text-fill: #8a694a; -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="statusLabel" text=""
+                           style="-fx-font-size: 12px; -fx-text-fill: #6b4b31;"/>
+                </HBox>
+
+                <!-- TABLE VIEW -->
+                <TableView fx:id="booksTable" VBox.vgrow="ALWAYS"
+                           style="-fx-background-color: #fcf8f3;
+                                  -fx-border-color: #ccb89d;
+                                  -fx-border-radius: 8;
+                                  -fx-background-radius: 8;">
+
+                    <columns>
+                        <TableColumn fx:id="bookIdColumn" text="ID" prefWidth="60"
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="titleColumn" text="Title" prefWidth="300"/>
+                        <TableColumn fx:id="compilerColumn" text="Compiler" prefWidth="200"/>
+                        <TableColumn fx:id="eraColumn" text="Era" prefWidth="150"
+                                     style="-fx-alignment: CENTER;"/>
+                    </columns>
+
+                </TableView>
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

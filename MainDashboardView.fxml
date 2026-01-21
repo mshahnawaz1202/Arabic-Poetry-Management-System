@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.controller.MainDashboardController">
+
+    <!-- ================= HEADER ================= -->
+    <top>
+        <VBox spacing="5" style="-fx-background-color: linear-gradient(to right, #b47c4d, #87572d); -fx-padding: 25;">
+            <Label text="Poetry Management System"
+                   style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+            <Label text="Arabic Poetry Analysis and Research Platform"
+                   style="-fx-text-fill: white; -fx-opacity: 0.9; -fx-font-size: 14px;"/>
+        </VBox>
+    </top>
+
+    <!-- ================= CONTENT ================= -->
+    <center>
+        <VBox spacing="30" alignment="TOP_CENTER" style="-fx-padding: 30;">
+
+            <!-- CORE MANAGEMENT -->
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="CORE MANAGEMENT"
+                       style="-fx-font-size: 14px; -fx-text-fill: #5a3d24; -fx-font-weight: bold;"/>
+
+                <Button text="Manage Books" fx:id="manageBooksBtn" onAction="#handleManageBooks"
+                        style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                               -fx-text-fill: white;
+                               -fx-font-size: 15px;
+                               -fx-font-weight: bold;
+                               -fx-padding: 12 28;
+                               -fx-background-radius: 14px;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 8, 0.2, 0, 2);"/>
+            </VBox>
+
+            <!-- TEXT PROCESSING -->
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="TEXT PROCESSING"
+                       style="-fx-font-size: 14px; -fx-text-fill: #5a3d24; -fx-font-weight: bold;"/>
+
+                <HBox spacing="20" alignment="CENTER">
+
+                    <Button text="Tokenize" fx:id="tokenizeBtn" onAction="#handleTokenize"
+                            style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-font-weight: bold;
+                                   -fx-padding: 10 22;
+                                   -fx-background-radius: 12px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);"/>
+
+                    <Button text="Lemmatize" fx:id="lemmatizeBtn" onAction="#handleLemmatize"
+                            style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-font-weight: bold;
+                                   -fx-padding: 10 22;
+                                   -fx-background-radius: 12px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);"/>
+
+                    <Button text="Segmentize" fx:id="segmentizeBtn" onAction="#handleSegmentize"
+                            style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-font-weight: bold;
+                                   -fx-padding: 10 22;
+                                   -fx-background-radius: 12px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);"/>
+
+                    <Button text="Root Extract" fx:id="rootExtractBtn" onAction="#handleRootExtract"
+                            style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-font-weight: bold;
+                                   -fx-padding: 10 22;
+                                   -fx-background-radius: 12px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);"/>
+                </HBox>
+            </VBox>
+
+            <!-- ANALYSIS AND SEARCH -->
+            <VBox alignment="CENTER" spacing="10">
+
+                <Label text="ANALYSIS &amp; SEARCH"
+                       style="-fx-font-size: 14px; -fx-text-fill: #5a3d24; -fx-font-weight: bold;"/>
+
+                <HBox spacing="20" alignment="CENTER">
+
+                    <Button text="N-Gram Similarity" fx:id="ngramBtn" onAction="#handleNGramSimilarity"
+                            style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-font-weight: bold;
+                                   -fx-padding: 10 22;
+                                   -fx-background-radius: 12px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);"/>
+
+                    <Button text="View Book Index" fx:id="indexBtn" onAction="#handleViewBookIndex"
+                            style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-font-weight: bold;
+                                   -fx-padding: 10 22;
+                                   -fx-background-radius: 12px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);"/>
+
+                    <Button text="Frequency Analysis" fx:id="frequencyBtn" onAction="#handleFrequency"
+                            style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-font-weight: bold;
+                                   -fx-padding: 10 22;
+                                   -fx-background-radius: 12px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);"/>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER">
+
+                    <Button text="Search Verses" fx:id="searchBtn" onAction="#handleSearch"
+                            style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-font-weight: bold;
+                                   -fx-padding: 10 22;
+                                   -fx-background-radius: 12px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);"/>
+
+                    <Button text="Browse Poetry" fx:id="browseBtn" onAction="#handleBrowsing"
+                            style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-font-weight: bold;
+                                   -fx-padding: 10 22;
+                                   -fx-background-radius: 12px;
+                                   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);"/>
+                </HBox>
+            </VBox>
+
+            <!-- EXIT BUTTON -->
+            <Button text="Exit Application" fx:id="exitBtn" onAction="#handleExit"
+                    style="-fx-background-color: linear-gradient(to bottom, #8a6040, #6d4a2c);
+                           -fx-text-fill: white;
+                           -fx-font-size: 15px;
+                           -fx-font-weight: bold;
+                           -fx-padding: 12 28;
+                           -fx-background-radius: 14px;
+                           -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 8, 0.2, 0, 2);"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>

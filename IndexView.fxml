@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.controller.IndexController"
+            prefHeight="750.0" prefWidth="1200.0"
+            style="-fx-background-color: #f3eadb;">
+
+    <!-- TOP HEADER -->
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #e6d5b8, #d9c3a3);
+                     -fx-effect: dropshadow(gaussian, rgba(80,60,40,0.3), 15, 0, 0, 2);">
+            <padding><Insets top="20" right="40" bottom="20" left="40"/></padding>
+
+            <Label text="Book Index"
+                   textFill="#4b2e19"
+                   style="-fx-font-weight: bold;">
+                <font><Font size="28"/></font>
+            </Label>
+
+            <Label text="Hierarchical view: Book -> Root -> Lemma -> Token"
+                   textFill="#6b4b31">
+                <font><Font size="14"/></font>
+            </Label>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="10">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            
+            <!-- HIERARCHICAL COLUMNS -->
+            <HBox spacing="10" VBox.vgrow="ALWAYS">
+                <!-- COL 1: BOOKS -->
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="1. Select Book" style="-fx-font-weight: bold; -fx-text-fill: #8a694a;"/>
+                    <ListView fx:id="booksList" VBox.vgrow="ALWAYS" 
+                              style="-fx-border-color: #ccb89d; -fx-fixed-cell-size: 30;"/>
+                </VBox>
+
+                <!-- COL 2: ROOTS -->
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="2. Select Root" style="-fx-font-weight: bold; -fx-text-fill: #8a694a;"/>
+                    <ListView fx:id="rootsList" VBox.vgrow="ALWAYS"
+                              style="-fx-border-color: #ccb89d; -fx-fixed-cell-size: 30;"/>
+                </VBox>
+
+                <!-- COL 3: LEMMAS -->
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="3. Select Lemma" style="-fx-font-weight: bold; -fx-text-fill: #8a694a;"/>
+                    <ListView fx:id="lemmasList" VBox.vgrow="ALWAYS"
+                              style="-fx-border-color: #ccb89d; -fx-fixed-cell-size: 30;"/>
+                </VBox>
+
+                <!-- COL 4: TOKENS -->
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="4. Select Token" style="-fx-font-weight: bold; -fx-text-fill: #8a694a;"/>
+                    <ListView fx:id="tokensList" VBox.vgrow="ALWAYS"
+                              style="-fx-border-color: #ccb89d; -fx-fixed-cell-size: 30;"/>
+                </VBox>
+            </HBox>
+
+            <!-- RESULTS RESULTS -->
+            <Label text="Verses for Selected Token" style="-fx-font-weight: bold; -fx-text-fill: #4b2e19;"/>
+            <TableView fx:id="resultsTable" prefHeight="250"
+                       style="-fx-background-color: #fcf8f3; -fx-border-color: #ccb89d;">
+                <columns>
+                    <TableColumn fx:id="verseIdCol" text="ID" prefWidth="60"/>
+                    <TableColumn fx:id="verseNoCol" text="No." prefWidth="50" style="-fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="verseTextCol" text="Verse Text" prefWidth="600"/>
+                    <TableColumn fx:id="poemTitleCol" text="Poem" prefWidth="250"/>
+                </columns>
+            </TableView>
+
+            <HBox alignment="CENTER_RIGHT">
+                 <Label fx:id="statusLabel" text="Ready" textFill="#6b4b31"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

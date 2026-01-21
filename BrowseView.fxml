@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.controller.BrowseController"
+            prefHeight="750.0" prefWidth="1200.0"
+            style="-fx-background-color: #f3eadb;"> <!-- Arabic parchment -->
+
+    <!-- TOP HEADER -->
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #e6d5b8, #d9c3a3);
+                     -fx-effect: dropshadow(gaussian, rgba(80,60,40,0.3), 15, 0, 0, 2);">
+            <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+
+            <Label text="Browse Poetry"
+                   textFill="#4b2e19"
+                   style="-fx-font-weight: bold;">
+                <font><Font size="28"/></font>
+            </Label>
+
+            <Label text="Explore verses by tokens, roots, lemmas, and segments"
+                   textFill="#6b4b31">
+                <font><Font size="14"/></font>
+            </Label>
+        </VBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.25" style="-fx-background-color: transparent;">
+            <!-- LEFT PANEL: SELECTION -->
+            <VBox spacing="15"
+                  style="-fx-background-color: #fcf8f3;">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+                <Label text="BROWSE BY"
+                       style="-fx-font-size: 12px;
+                              -fx-text-fill: #8a694a;
+                              -fx-font-weight: bold;
+                              -fx-letter-spacing: 1.2;"/>
+                
+                <ComboBox fx:id="categoryCombo" promptText="Select Category" maxWidth="Infinity"
+                          style="-fx-background-color: #f7f1e8; -fx-border-color: #ccb89d; -fx-font-size: 14px;"/>
+
+                <Separator style="-fx-background-color: #ccb89d;"/>
+
+                <TextField fx:id="searchField" promptText="Search items..."
+                           style="-fx-background-color: #ffffff; -fx-border-color: #ccb89d; -fx-padding: 8;"/>
+
+                <ListView fx:id="itemList" VBox.vgrow="ALWAYS"
+                          style="-fx-background-color: #ffffff; -fx-border-color: #ccb89d;"/>
+            </VBox>
+
+            <!-- RIGHT PANEL: RESULTS -->
+            <VBox spacing="15" style="-fx-background-color: #f3eadb;">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                     <Label text="SEARCH RESULTS"
+                           style="-fx-font-size: 12px; -fx-text-fill: #8a694a;
+                                  -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+                     <Region HBox.hgrow="ALWAYS"/>
+                     <Label fx:id="statusLabel" text="Ready to browse" textFill="#6b4b31"/>
+                </HBox>
+
+                <TableView fx:id="resultsTable" VBox.vgrow="ALWAYS"
+                           style="-fx-background-color: #fcf8f3;
+                                  -fx-border-color: #ccb89d;
+                                  -fx-border-radius: 4;
+                                  -fx-background-radius: 4;">
+                    <columns>
+                        <TableColumn fx:id="verseIdCol" text="ID" prefWidth="60"/>
+                        <TableColumn fx:id="verseNoCol" text="No." prefWidth="50" style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="verseTextCol" text="Verse Text" prefWidth="400"/>
+                        <TableColumn fx:id="poemTitleCol" text="Poem" prefWidth="150"/>
+                        <TableColumn fx:id="poetNameCol" text="Poet" prefWidth="120"/>
+                        <TableColumn fx:id="bookTitleCol" text="Book" prefWidth="120"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </SplitPane>
+    </center>
+</BorderPane>
