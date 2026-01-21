@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.controller.SearchController"
+            prefHeight="600.0" prefWidth="800.0"
+            style="-fx-background-color: #f8f8f8;">
+
+    <!-- Top: Search Controls -->
+    <top>
+        <VBox spacing="15" style="-fx-background-color: #4a6572; -fx-padding: 20;">
+            <Label text="🔍 Verse Search" textFill="white" 
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Search Type:" textFill="white"/>
+                <ComboBox fx:id="searchTypeCombo" prefWidth="120"/>
+                
+                <TextField fx:id="searchTextField" prefWidth="300" 
+                           promptText="Enter search text..."/>
+                
+                <Button fx:id="searchButton" text="Search" 
+                        onAction="#handleSearch" 
+                        style="-fx-background-color: #f9aa33; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                	
+                <Button fx:id="clearButton" text="Clear" 
+                        onAction="#handleClear" 
+                        style="-fx-background-color: #7e8c8d; -fx-text-fill: white;"/>
+            </HBox>
+            
+            <Label fx:id="searchInfoLabel" text="Search for verses containing specific text" 
+                   textFill="#e0e0e0" style="-fx-font-size: 12px;"/>
+            <Label fx:id="resultCountLabel" text="Found 0 verses" 
+                   textFill="#e0e0e0" style="-fx-font-size: 12px;"/>
+        </VBox>
+    </top>
+
+    <!-- Center: Results -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <TableView fx:id="resultsTableView" prefHeight="300">
+                <columns>
+                    <TableColumn fx:id="verseIdCol" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="poemIdCol" text="Poem ID" prefWidth="80"/>
+                    <TableColumn fx:id="verseNoCol" text="Verse No" prefWidth="80"/>
+                    <TableColumn fx:id="textCol" text="Text" prefWidth="400"/>
+                    <TableColumn fx:id="textDiacritizedCol" text="Text (Diacritized)" prefWidth="400"/>
+                </columns>
+            </TableView>
+            
+            <!-- Details Section -->
+            <VBox fx:id="verseDetailBox" spacing="5" style="-fx-padding: 10; -fx-border-color: #ccc; -fx-border-width: 1; -fx-border-radius: 5;">
+                <Label text="Verse Details:" style="-fx-font-weight: bold;"/>
+                <Label text="Text:" style="-fx-font-weight: bold; -fx-text-fill: #444;"/>
+                <Label fx:id="detailTextLabel" wrapText="true" style="-fx-padding: 0 0 10 0;"/>
+                <Label text="Diacritized:" style="-fx-font-weight: bold; -fx-text-fill: #444;"/>
+                <Label fx:id="detailDiacritizedLabel" wrapText="true" style="-fx-padding: 0 0 10 0;"/>
+                <Label text="Translation:" style="-fx-font-weight: bold; -fx-text-fill: #444;"/>
+                <Label fx:id="detailTranslationLabel" wrapText="true" style="-fx-padding: 0 0 10 0;"/>
+                <Label text="Notes:" style="-fx-font-weight: bold; -fx-text-fill: #444;"/>
+                <TextArea fx:id="detailNotesTextArea" prefHeight="80" editable="false" 
+                          wrapText="true" style="-fx-padding: 5;"/>
+            </VBox>
+        </VBox>
+    </center>
+
+    <!-- Bottom: Status -->
+    <bottom>
+        <HBox style="-fx-background-color: #344955; -fx-padding: 10;">
+            <Label fx:id="statusLabel" text="Ready" textFill="white"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

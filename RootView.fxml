@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.controller.RootController"
+            prefHeight="750.0" prefWidth="1200.0"
+            style="-fx-background-color: #f3eadb;">
+
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #e6d5b8, #d9c3a3);
+                     -fx-effect: dropshadow(gaussian, rgba(80,60,40,0.3), 15, 0, 0, 2);">
+            <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+            <Label text="Root Extraction"
+                   textFill="#4b2e19"
+                   style="-fx-font-weight: bold;">
+                <font><Font size="28"/></font>
+            </Label>
+            <Label text="Extract roots from verses, browse roots, and manage root database"
+                   textFill="#6b4b31">
+                <font><Font size="14"/></font>
+            </Label>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="0" HBox.hgrow="ALWAYS">
+
+            <!-- LEFT PANEL -->
+            <VBox spacing="20" style="-fx-background-color: #fcf8f3; -fx-border-color: #ccb89d; -fx-border-width: 0 1 0 0;" prefWidth="380">
+                <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+                <Label text="ACTIONS" style="-fx-font-size: 12px; -fx-text-fill: #8a694a; -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+                <VBox spacing="12">
+                    <Button fx:id="extractAllBtn" text="Extract Roots All Verses" onAction="#handleExtractAll" maxWidth="Infinity"/>
+                    <Button fx:id="extractAndSaveBtn" text="Extract and Save All" onAction="#handleExtractAndSave" maxWidth="Infinity"/>
+                    <Button fx:id="loadAllRootsBtn" text="Load All Roots" onAction="#handleLoadAllRoots" maxWidth="Infinity"/>
+                    
+                    <Separator/>
+                    <HBox spacing="10">
+                        <TextField fx:id="verseIdField" promptText="Verse ID"/>
+                        <Button fx:id="loadByVerseBtn" text="Go" onAction="#handleLoadByVerseId"/>
+                    </HBox>
+                    
+                    <Separator/>
+                    <Button fx:id="deleteAllRootsBtn" text="Delete All Roots" onAction="#handleDeleteAll" maxWidth="Infinity"/>
+                </VBox>
+            </VBox>
+
+            <!-- RIGHT PANEL -->
+            <VBox spacing="15" HBox.hgrow="ALWAYS">
+                <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="ROOT LIST" style="-fx-font-size: 12px; -fx-text-fill: #8a694a; -fx-font-weight: bold;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="statusLabel" text="" style="-fx-text-fill: #6b4b31; -fx-font-size: 13px;"/>
+                </HBox>
+                <TableView fx:id="rootsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+                        <TableColumn fx:id="verseIdColumn" text="Verse ID" prefWidth="100"/>
+                        <TableColumn fx:id="rootColumn" text="Root" prefWidth="250"/>
+                        <TableColumn fx:id="positionColumn" text="Position" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

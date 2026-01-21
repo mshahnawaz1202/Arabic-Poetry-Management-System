@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="pl.controller.VerseController"
+            prefHeight="750.0" prefWidth="1300.0"
+            style="-fx-background-color: #f5f7fa;">
+    
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #0891b2, #06b6d4); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);">
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40"/>
+            </padding>
+            <Label fx:id="poemTitleLabel" text="Manage Verses" textFill="white">
+                <font>
+                    <Font name="System" size="28"/>
+                </font>
+            </Label>
+            <Label text="Add and edit verses for this poem" textFill="#cffafe">
+                <font>
+                    <Font size="14"/>
+                </font>
+                <VBox.margin>
+                    <Insets top="5"/>
+                </VBox.margin>
+            </Label>
+        </VBox>
+    </top>
+    
+    <center>
+        <HBox spacing="0" HBox.hgrow="ALWAYS">
+            
+            <!-- Left Panel: Verse Operations -->
+            <VBox spacing="20" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-width: 0 1 0 0;"
+                  prefWidth="450">
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+                
+                <Label text="VERSE DETAILS" 
+                       style="-fx-font-size: 12px; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+                
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+                    <VBox spacing="15">
+                        <Label text="Verse Number" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: 500;"/>
+                        <TextField fx:id="verseNoField" promptText="Enter verse number" 
+                                   style="-fx-background-color: #f8fafc; -fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 13px;"/>
+                        
+                        <Label text="Text" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: 500;">
+                            <VBox.margin>
+                                <Insets top="5"/>
+                            </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="textArea" promptText="Enter verse text" wrapText="true"
+                                  prefHeight="90"
+                                  style="-fx-background-color: #f8fafc; -fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 13px;"/>
+                        
+                        <Label text="Diacritized Text (Optional)" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: 500;">
+                            <VBox.margin>
+                                <Insets top="5"/>
+                            </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="diacritizedArea" promptText="Enter diacritized text" wrapText="true"
+                                  prefHeight="80"
+                                  style="-fx-background-color: #f8fafc; -fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 13px;"/>
+                        
+                        <Label text="Translation (Optional)" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: 500;">
+                            <VBox.margin>
+                                <Insets top="5"/>
+                            </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="translationArea" promptText="Enter translation" wrapText="true"
+                                  prefHeight="80"
+                                  style="-fx-background-color: #f8fafc; -fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 13px;"/>
+                        
+                        <Label text="Notes (Optional)" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: 500;">
+                            <VBox.margin>
+                                <Insets top="5"/>
+                            </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="notesArea" promptText="Enter notes" wrapText="true"
+                                  prefHeight="70"
+                                  style="-fx-background-color: #f8fafc; -fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 13px;"/>
+                    </VBox>
+                </ScrollPane>
+                
+                <Separator style="-fx-background-color: #e2e8f0;"/>
+                
+                <Label text="ACTIONS" 
+                       style="-fx-font-size: 12px; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+                
+                <VBox spacing="12">
+                    <Button fx:id="addVerseBtn" text="Add Verse" onAction="#handleAddVerse"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #0891b2; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500; -fx-background-radius: 6; -fx-padding: 12; -fx-cursor: hand;"/>
+                    
+                    <Button fx:id="updateVerseBtn" text="Update Selected Verse" onAction="#handleUpdateVerse"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #0ea5e9; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500; -fx-background-radius: 6; -fx-padding: 12; -fx-cursor: hand;"/>
+                    
+                    <Button fx:id="deleteVerseBtn" text="Delete Selected Verse" onAction="#handleDeleteVerse"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500; -fx-background-radius: 6; -fx-padding: 12; -fx-cursor: hand;"/>
+                    
+                    <Button fx:id="refreshBtn" text="↻ Refresh" onAction="#handleRefresh"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #64748b; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500; -fx-background-radius: 6; -fx-padding: 12; -fx-cursor: hand;"/>
+                </VBox>
+            </VBox>
+            
+            <!-- Right Panel: Verses Table -->
+            <VBox spacing="15" HBox.hgrow="ALWAYS" style="-fx-background-color: #f5f7fa;">
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+                
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Label text="VERSE COLLECTION" 
+                           style="-fx-font-size: 12px; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="statusLabel" text="" 
+                           style="-fx-font-size: 12px; -fx-font-weight: 500;"/>
+                </HBox>
+                
+                <TableView fx:id="versesTable" VBox.vgrow="ALWAYS"
+                           style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8;">
+                    <columns>
+                        <TableColumn fx:id="verseIdColumn" text="ID" prefWidth="60" 
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="verseNoColumn" text="Verse #" prefWidth="80" 
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="textColumn" text="Text" prefWidth="600"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

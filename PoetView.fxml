@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="pl.controller.PoetController"
+            prefHeight="700.0" prefWidth="1100.0"
+            style="-fx-background-color: #f5f7fa;">
+    
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #f59e0b, #f97316); -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);">
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40"/>
+            </padding>
+            <Label text="Manage Poets" textFill="white">
+                <font>
+                    <Font name="System" size="28"/>
+                </font>
+            </Label>
+            <Label text="Add and manage poet information" textFill="#fed7aa">
+                <font>
+                    <Font size="14"/>
+                </font>
+                <VBox.margin>
+                    <Insets top="5"/>
+                </VBox.margin>
+            </Label>
+        </VBox>
+    </top>
+    
+    <center>
+        <HBox spacing="0" HBox.hgrow="ALWAYS">
+            
+            <!-- Left Panel: Poet Operations -->
+            <VBox spacing="20" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-width: 0 1 0 0;"
+                  prefWidth="400">
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+                
+                <Label text="POET DETAILS" 
+                       style="-fx-font-size: 12px; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+                
+                <VBox spacing="15">
+                    <Label text="Name" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: 500;"/>
+                    <TextField fx:id="poetNameField" promptText="Enter poet name" 
+                               style="-fx-background-color: #f8fafc; -fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 13px;"/>
+                    
+                    <Label text="Biography" style="-fx-font-size: 13px; -fx-text-fill: #475569; -fx-font-weight: 500;">
+                        <VBox.margin>
+                            <Insets top="5"/>
+                        </VBox.margin>
+                    </Label>
+                    <TextArea fx:id="biographyArea" promptText="Enter biography information" wrapText="true"
+                              prefHeight="150"
+                              style="-fx-background-color: #f8fafc; -fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10; -fx-font-size: 13px;"/>
+                </VBox>
+                
+                <Separator style="-fx-background-color: #e2e8f0;">
+                    <VBox.margin>
+                        <Insets top="10" bottom="10"/>
+                    </VBox.margin>
+                </Separator>
+                
+                <Label text="ACTIONS" 
+                       style="-fx-font-size: 12px; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+                
+                <VBox spacing="12">
+                    <Button fx:id="addPoetBtn" text="Add Poet" onAction="#handleAddPoet"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500; -fx-background-radius: 6; -fx-padding: 12; -fx-cursor: hand;"/>
+                    
+                    <Button fx:id="updatePoetBtn" text="Update Selected Poet" onAction="#handleUpdatePoet"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #0ea5e9; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500; -fx-background-radius: 6; -fx-padding: 12; -fx-cursor: hand;"/>
+                    
+                    <Button fx:id="deletePoetBtn" text="Delete Selected Poet" onAction="#handleDeletePoet"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500; -fx-background-radius: 6; -fx-padding: 12; -fx-cursor: hand;"/>
+                    
+                    <Button fx:id="refreshBtn" text="↻ Refresh" onAction="#handleRefresh"
+                            maxWidth="Infinity"
+                            style="-fx-background-color: #64748b; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 500; -fx-background-radius: 6; -fx-padding: 12; -fx-cursor: hand;"/>
+                </VBox>
+            </VBox>
+            
+            <!-- Right Panel: Poets Table -->
+            <VBox spacing="15" HBox.hgrow="ALWAYS" style="-fx-background-color: #f5f7fa;">
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+                
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Label text="POET DIRECTORY" 
+                           style="-fx-font-size: 12px; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-letter-spacing: 1.2;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="statusLabel" text="" 
+                           style="-fx-font-size: 12px; -fx-font-weight: 500;"/>
+                </HBox>
+                
+                <TableView fx:id="poetsTable" VBox.vgrow="ALWAYS"
+                           style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8;">
+                    <columns>
+                        <TableColumn fx:id="poetIdColumn" text="ID" prefWidth="60" 
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="poetNameColumn" text="Name" prefWidth="200"/>
+                        <TableColumn fx:id="biographyColumn" text="Biography" prefWidth="400"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>
